@@ -88,7 +88,7 @@ C---
 
       if (firstChar .eq. '9') then    ! new set of runs
          seed = make_sprng_seed() ! make seed from date/time information 
-         junkPtr = init_sprng(gtype, seed, CRAYLCG) ! initialize
+         junkPtr = init_sprng(seed, CRAYLCG, gtype) ! initialize
                                                                ! stream   
          junk = print_sprng()
          in_old = 0
@@ -97,7 +97,7 @@ C---
          open(31, file = filename, status = 'unknown', 
      &      form = 'unformatted')
          read(31) in_old, n_old, size, buffer  !read previous run info.
-         junkPtr = unpack_sprng(buffer)
+         junkPtr = unpack_sprng(buffer,gtype)
          close (31)
       endif
 

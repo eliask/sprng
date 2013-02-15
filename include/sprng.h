@@ -1,6 +1,7 @@
 #ifndef _sprng_h_
 #define _sprng_h_
 
+#define DEFAULT_RNG_TYPE SPRNG_LFG
 
 #define SPRNG_LFG   0
 #define SPRNG_LCG   1
@@ -8,8 +9,6 @@
 #define SPRNG_CMRG  3
 #define SPRNG_MLFG  4
 #define SPRNG_PMLCG 5
-
-#include "interface.h"
 
 #define SPRNG_DEFAULT 0
 #define CRAYLCG 0
@@ -34,8 +33,6 @@
 #define LAG607B  9
 #define LAG1279B 10
 
-#define CHECK 1
-
 #define MAX_PACKED_LENGTH 24000
 
 #ifdef USE_MPI
@@ -51,7 +48,7 @@
 #define pack_sprng pack_rng_simple
 #define unpack_sprng unpack_rng_simple
 #define isprng  MPINAME(get_rn_int_simple)
-#define init_sprng MPINAME(init_rng_simple)
+#define init_sprng MPINAME(init_rng_simple) 
 #define print_sprng print_rng_simple
 
 #ifdef FLOAT_GEN
@@ -60,14 +57,14 @@
 #define sprng  MPINAME(get_rn_dbl_simple)
 #endif
 
-#elif !defined(CHECK_POINTERS)
+#else
 
 #define free_sprng free_rng
 #define pack_sprng pack_rng
 #define unpack_sprng unpack_rng
 #define isprng  get_rn_int
-#define spawn_sprng(A,B,C) spawn_rng(A,B,C,!CHECK)
-#define init_sprng init_rng
+#define spawn_sprng spawn_rng
+#define init_sprng init_rng 
 #define print_sprng print_rng
 
 #ifdef FLOAT_GEN
@@ -76,22 +73,40 @@
 #define sprng  get_rn_dbl
 #endif
 
-#else
-
-#define free_sprng(A) ((deleteID(A)==NULL) ? -1 : free_rng(A))
-#define pack_sprng(A,B) ((checkID(A)==NULL) ? 0 : pack_rng(A,B))
-#define unpack_sprng(A) addID(unpack_rng(A))
-#define isprng(A)  ((checkID(A)==NULL) ? -1 : get_rn_int(A))
-#define spawn_sprng(A,B,C) ((checkID(A)==NULL) ? 0 : spawn_rng(A,B,C,CHECK))
-#define init_sprng(A,B,C,D,E) addID(init_rng(A,B,C,D,E))
-#define print_sprng(A) ((checkID(A)==NULL) ? 0 : print_rng(A))
-
-#ifdef FLOAT_GEN
-#define sprng(A)  ((checkID(A)==NULL) ? -1.0 : get_rn_flt(A))
-#else
-#define sprng(A)  ((checkID(A)==NULL) ? -1.0 : get_rn_dbl(A))
 #endif
 
-#endif
+class Sprng
+{
+ public:
+
+  virtual ~Sprng(){};
+  virtual int init_rng (int, int, int, int) = 0;
+  virtual int get_rn_int () = 0;
+  virtual float get_rn_flt () = 0;
+  virtual double get_rn_dbl () = 0;
+  virtual int spawn_rng (int nspawned, Sprng ***newgens) = 0;
+  virtual int get_seed_rng () = 0;
+  virtual int free_rng () = 0;
+  virtual int pack_rng (char **buffer) = 0;
+  virtual int print_rng () = 0;
+  virtual int unpack_rng(char *packed) = 0;
+};
+
+int make_new_seed ();
+
+int *init_rng_simple (int seed, int mult, int gtype = 0); 
+int *init_rng_simple_mpi (int seed, int mult, int gtype = 0); 
+int get_rn_int_simple ();
+int get_rn_int_simple_mpi ();
+float get_rn_flt_simple ();
+float get_rn_flt_simple_mpi ();
+double get_rn_dbl_simple ();
+double get_rn_dbl_simple_mpi ();
+int pack_rng_simple (char **buffer);
+int *unpack_rng_simple (char *packed, int gtype);
+int print_rng_simple ();
+int make_new_seed_mpi ();
+
 
 #endif
+

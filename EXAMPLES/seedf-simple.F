@@ -4,6 +4,7 @@ C 'make_sprng_seed' is used to produce a new seed each time the program is
 C  run. Then a few random numbers are printed. 
 C
 
+
        program seedf_simple
        implicit none
 
@@ -22,7 +23,7 @@ C---
        
 C  generate a new seed each time program is run and initialize stream
        seed = make_sprng_seed()
-       junkPtr = init_sprng(gtype,seed,SPRNG_DEFAULT)
+       junkPtr = init_sprng(seed,SPRNG_DEFAULT,gtype)
        print *, 'Printing information about new stream'
        junk = print_sprng()
 

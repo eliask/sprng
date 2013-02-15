@@ -1,5 +1,3 @@
-
-
 #ifndef _sprngf_h_
 
 #define SPRNG_LFG   0
@@ -32,12 +30,6 @@
 #define LAG607   8
 #define LAG607B  9
 #define LAG1279B 10
-
-#ifdef CHECK_POINTERS
-#define CHECK 1
-#else
-#define CHECK 0
-#endif /* ifdef CHECK_POINTERS */
 
 #define MAX_PACKED_LENGTH 24000
 
@@ -118,34 +110,6 @@
           real*8 fget_rn_dbl_sim
 #endif
 
-#if defined(CHECK_POINTERS)
-#undef DEFAULTINT
-          external fget_rn_int_ptr, fget_rn_flt_ptr, fget_rn_dbl_ptr
-          external fspawn_rng_ptr, ffree_rng_ptr, finit_rng_ptr
-          external fpack_rng_ptr, funpack_rng_ptr, fprint_rng_ptr
-
-          integer fget_rn_int_ptr, ffree_rng_ptr, fpack_rng_ptr 
-          SPRNG_POINTER finit_rng_ptr, funpack_rng_ptr
-          integer fspawn_rng_ptr, fprint_rng_ptr
-          real*4 fget_rn_flt_ptr
-          real*8 fget_rn_dbl_ptr
-
-#ifndef  _sprngf_h_
-#define isprng  fget_rn_int_ptr
-#define free_sprng ffree_rng_ptr
-#define spawn_sprng(A,B,C) fspawn_rng_ptr(A,B,C,CHECK)
-#define pack_sprng  fpack_rng_ptr
-#define unpack_sprng funpack_rng_ptr
-#define init_sprng finit_rng_ptr
-#define print_sprng fprint_rng_ptr
-#ifdef FLOAT_GEN
-#define sprng  fget_rn_flt_ptr
-#else
-#define sprng  fget_rn_dbl_ptr
-#endif
-#endif
-#endif
-
 #if defined(DEFAULTINT)
           external fget_rn_int, fget_rn_flt, fget_rn_dbl
           external fspawn_rng, ffree_rng, finit_rng
@@ -160,7 +124,7 @@
 #ifndef  _sprngf_h_
 #define isprng fget_rn_int
 #define free_sprng ffree_rng
-#define spawn_sprng(A,B,C) fspawn_rng(A,B,C,CHECK)
+#define spawn_sprng fspawn_rng
 #define pack_sprng fpack_rng
 #define unpack_sprng funpack_rng
 #define init_sprng finit_rng
@@ -178,4 +142,6 @@
 
 #ifndef  _sprngf_h_
 #define _sprngf_h_
+
 #endif
+

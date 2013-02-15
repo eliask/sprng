@@ -38,7 +38,7 @@ C---
 
 #ifdef CONVERT
 C   initialization
-       junkPtr = init_sprng(gtype,seed,SPRNG_DEFAULT)
+       junkPtr = init_sprng(seed,SPRNG_DEFAULT,gtype)
        print *, 'Printing information about new stream'
        junk = print_sprng()
 #else

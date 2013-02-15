@@ -1,0 +1,14 @@
+SPRNG 4 with Autoconf/Automake 
+
+(6/7/07)
+* fixed problem with autoconf for mpi
+
+	
+(4/17/07)
+
+* fixed a bug with the unpack function  simple interface
+* added directory EXAMPLES/mpisprng for mpi exams
+* added directory TESTS/mpitests for mpi tests
+* added virtual destructor in sprng class
+
+	
