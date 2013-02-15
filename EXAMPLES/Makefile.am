@@ -1,13 +1,13 @@
 if USE_MPI
   SUBDIRS = . mpisprng
-  MPIDIR = $(shell @MPICXX@ --showme:compile)
-  MPILIB = $(shell @MPICXX@ --showme:link)
+  MPIDIR = `@MPICXX@ --showme:compile`
+  MPILIB = `@MPICXX@ --showme:link`
 else
   SUBDIRS = .
 endif
 
 
-LIBDIR=../lib
+LIBDIR=../SRC/.libs
 SRCDIR=../SRC
 INCLUDEDIR=../include
 INCLUDE = -I$(INCLUDEDIR)
@@ -15,7 +15,7 @@ INCLUDE = -I$(INCLUDEDIR)
 GEN=sprng
 CLEANFILES=*.$(GEN)
 
-bin_PROGRAMS = convert.tmp pi-simple.tmp seed.tmp seed-simple.tmp simple-simple.tmp spawn.tmp sprng.tmp sprng-simple.tmp \
+noinst_PROGRAMS = convert.tmp pi-simple.tmp seed.tmp seed-simple.tmp simple-simple.tmp spawn.tmp sprng.tmp sprng-simple.tmp \
 	convertf.tmp pif-simple.tmp seedf.tmp seedf-simple.tmp simplef-simple.tmp spawnf.tmp sprngf.tmp sprngf-simple.tmp subroutinef.tmp
 
 
@@ -106,23 +106,23 @@ sprngf_simple_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lstdc++
 sprngf_simple_tmp_LDFLAGS = $(MPILIB)
 
 
-bin_SCRIPTS = sprngtest
-sprngtest:
-	@rm -f *.o
-	@mv convert.tmp convert.$(GEN)
-	@mv pi-simple.tmp pi-simple.$(GEN)
-	@mv seed.tmp seed.$(GEN)
-	@mv seed-simple.tmp seed-simple.$(GEN)
-	@mv simple-simple.tmp simple-simple.$(GEN)
-	@mv spawn.tmp spawn.$(GEN)
-	@mv sprng.tmp sprng.$(GEN)
-	@mv sprng-simple.tmp sprng-simple.$(GEN)
-	@mv convertf.tmp convertf.$(GEN)
-	@mv pif-simple.tmp pif-simple.$(GEN)
-	@mv seedf.tmp seedf.$(GEN)
-	@mv seedf-simple.tmp seedf-simple.$(GEN)
-	@mv simplef-simple.tmp simplef-simple.$(GEN)
-	@mv spawnf.tmp spawnf.$(GEN)
-	@mv sprngf.tmp sprngf.$(GEN)
-	@mv sprngf-simple.tmp sprngf-simple.$(GEN)
-	@mv subroutinef.tmp subroutinef.$(GEN)
+#bin_SCRIPTS = sprngtest
+#sprngtest:
+#	@rm -f *.o
+#	@mv convert.tmp convert.$(GEN)
+#	@mv pi-simple.tmp pi-simple.$(GEN)
+#	@mv seed.tmp seed.$(GEN)
+#	@mv seed-simple.tmp seed-simple.$(GEN)
+#	@mv simple-simple.tmp simple-simple.$(GEN)
+#	@mv spawn.tmp spawn.$(GEN)
+#	@mv sprng.tmp sprng.$(GEN)
+#	@mv sprng-simple.tmp sprng-simple.$(GEN)
+#	@mv convertf.tmp convertf.$(GEN)
+#	@mv pif-simple.tmp pif-simple.$(GEN)
+#	@mv seedf.tmp seedf.$(GEN)
+#	@mv seedf-simple.tmp seedf-simple.$(GEN)
+#	@mv simplef-simple.tmp simplef-simple.$(GEN)
+#	@mv spawnf.tmp spawnf.$(GEN)
+#	@mv sprngf.tmp sprngf.$(GEN)
+#	@mv sprngf-simple.tmp sprngf-simple.$(GEN)
+#	@mv subroutinef.tmp subroutinef.$(GEN)

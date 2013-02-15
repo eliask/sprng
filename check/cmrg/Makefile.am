@@ -1,6 +1,6 @@
 if USE_MPI
-  MPIDIR = $(shell @MPICXX@ --showme:compile)
-  MPILIB = $(shell @MPICXX@ --showme:link)
+  MPIDIR = `@MPICXX@ --showme:compile`
+  MPILIB = `@MPICXX@ --showme:link`
 endif
 
 SUBDIRS = .
@@ -8,10 +8,10 @@ SUBDIRS = .
 EXTRA_DIST=cmrg.data .insertlib
 INCLUDEDIR = $(top_srcdir)/SRC
 
-LIBDIR=../../lib
+LIBDIR=../../SRC/.libs
 CHKDIR=../../check
 
-bin_PROGRAMS = check.ccmrg check.fcmrg check_sim.ccmrg check_sim.fcmrg time.ccmrg time.fcmrg
+noinst_PROGRAMS = check.ccmrg check.fcmrg check_sim.ccmrg check_sim.fcmrg time.ccmrg time.fcmrg
 check_ccmrg_SOURCES = check_gen.cpp
 check_ccmrg_DEPENDENCIES = $(LIBDIR)/libsprng.a
 check_ccmrg_CXXFLAGS = -I$(INCLUDEDIR) $(MPIDIR)
@@ -43,8 +43,8 @@ time_fcmrg_LDADD = -L$(LIBDIR) -lsprng -lstdc++
 time_fcmrg_FFLAGS = $(FFPSIZE) -I$(INCLUDEDIR) $(MPIDIR)
 time_fcmrg_LDFLAGS = $(MPILIB)
 
-bin_SCRIPTS = checkcmrg timecmrg
-CLEANFILES = $(bin_SCRIPTS)
+noinst_SCRIPTS = checkcmrg timecmrg
+CLEANFILES = $(noinst_SCRIPTS)
 
 checkcmrg: $(CHKDIR)/insertlib
 	rm -f ./checkcmrg

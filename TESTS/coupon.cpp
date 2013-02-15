@@ -1,7 +1,7 @@
-#include <iostream.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
 #include "tests.h"
 
 #ifdef SPRNG_MPI

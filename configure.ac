@@ -6,6 +6,7 @@ AC_CANONICAL_SYSTEM
 
 AM_INIT_AUTOMAKE(sprng,4)
 AM_CONFIG_HEADER(config.h:config.in)
+AM_CONFIG_HEADER(SRC/fwrap.h:SRC/fwrap.h.in)
 
 # Checks for programs.
 AC_PROG_CXX
@@ -20,7 +21,8 @@ AC_F77_LIBRARY_LDFLAGS
 # FIXME: Replace `main' with a function in `-lm':
 AC_CHECK_LIB([m], [main])
 
-AC_PROG_RANLIB
+AC_PROG_LIBTOOL
+#AC_PROG_RANLIB
 AC_PATH_PROGS(BASH, bash)
 
 AC_SUBST(sprng_cxxflags)
@@ -32,31 +34,42 @@ AC_CHECK_HEADERS([limits.h stddef.h stdlib.h string.h sys/time.h])
 
 AC_CHECK_SIZEOF([long int])
 
-CXXFLAGS="$CXXFLAGS -Wno-deprecated"
+CXXFLAGS="$CXXFLAGS -Wno-deprecated -Wno-write-strings"
 
 if test "$ac_cv_sizeof_long_int" = "8"; then
   CXXFLAGS="$CXXFLAGS -DLONG64=long"
 fi
 
-AC_CHECK_PROGS(MPICXX, mpic++ mpicxx mpiCC hcp mpxlC_r mpxlC mpCC cmpic++, $CXX)
-AC_CHECK_PROGS(MPIF77, mpif77 hf77 mpxlf_r mpxlf mpf77 cmpifc, $F77)
+AC_ARG_WITH([mpi],
+    [AC_HELP_STRING([--with-mpi],
+        [use the MPI protocols @<:@default=no@:>@])],
+    [build_arg_mpi="$withval"],
+    [build_arg_mpi=default])
+test -z "$build_arg_mpi" && build_arg_mpi=default
 
-
-if test $CXX != $MPICXX; then  
-  can_use_mpi=y
-else
-  can_use_mpi=n 
+if test "$build_arg_mpi" == "yes"; then
+  AC_CHECK_PROGS(MPICC, mpicc hcc mpxlc_r mpxlc mpcc cmpicc, $CC) 
+  AC_CHECK_PROGS(MPICXX, mpic++ mpicxx mpiCC hcp mpxlC_r mpxlC mpCC cmpic++, $CXX)
+  AC_CHECK_PROGS(MPIF77, mpif77 hf77 mpxlf_r mpxlf mpf77 cmpifc, $F77)
+  if test -n $MPICXX;then
+    can_use_mpi=y
+  else
+    can_use_mpi=n
+  fi
 fi
 
-AM_CONDITIONAL(USE_MPI, test $can_use_mpi = y)
 
-if test $can_use_mpi = y; then
+AM_CONDITIONAL(USE_MPI, test "$can_use_mpi" == "y")
+
+if test "$can_use_mpi" == "y"; then
   MPI_DEF="-DSPRNG_MPI"
 else
   MPI_DEF=""
+  MPICXX=:
 fi
 
 AC_SUBST(MPI_DEF)
+AC_SUBST(MPICXX)
 
 
 AC_CHECK_HEADER(fft.h,fft="yes",fft="no")
@@ -90,7 +103,7 @@ AC_F77_WRAPPERS
 
 dnl deal with fortran wrapper name mangling
 AC_F77_NAME_MANGLING()
-if test "$ac_case" = "upper"; then
+if test "$ac_case" == "upper"; then
   FSUFFIX="F"
 else
   FSUFFIX="f"
@@ -107,6 +120,9 @@ fi
 
 AC_SUBST(FSUFFIX)
 AC_SUBST(FFXN)
+AC_SUBST(FFXN)
+AC_SUBST(F77_FUNC)
+AC_SUBST(F77_FUNC_)
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_HEADER_STDBOOL
@@ -121,9 +137,9 @@ AC_FUNC_MEMCMP
 AC_CHECK_FUNCS([memset pow sqrt])
 
 AC_PROG_INSTALL
+
 AC_OUTPUT([Makefile 
                  include/Makefile
-                 lib/Makefile
                  SRC/Makefile
                  SRC/cmrg/Makefile
                  SRC/lcg/Makefile
@@ -142,4 +158,5 @@ AC_OUTPUT([Makefile
 		 TESTS/mpitests/Makefile
                  EXAMPLES/Makefile
 		 EXAMPLES/mpisprng/Makefile])
+#                 lib/Makefile
 

@@ -13,56 +13,21 @@
 /************************************************************************/
 /************************************************************************/
 
-extern "C"
-{
-  #include "fwrap.h"
-}
-
 #include "sprng_cpp.h"
 #include "memory.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <sys/time.h>
 #include <sys/resource.h>
 
+#include "fwrap.h"
 
-extern "C"
-{
-  int fget_seed_rng(int **genptr);
-  int ffree_rng(int **genptr);
-  int fmake_new_seed(void);
-  int * finit_rng_sim(int *seed,  int *mult, int *gtype = 0);
-  int * finit_rng(int * rng_type, int *gennum, int *total_gen, int *seed, int *length);
-  int fspawn_rng(int **genptr,  int *nspawned, int **newGen);
-  int fget_rn_int_sim(void);
-  int fget_rn_int(int **genptr);
-  float fget_rn_flt_sim(void);
-  float fget_rn_flt(int **genptr);
-  double fget_rn_dbl_sim(void);
-  double fget_rn_dbl(int **genptr);
-  int fpack_rng(int **genptr, char *buffer);
-  int fpack_rng_simple(char *buffer);
-  int * funpack_rng(char *buffer, int *rng_type);
-  int * funpack_rng_simple(char *buffer, int *rng_type);
-  int fprint_rng( int **genptr);
-  int fprint_rng_simple(void);
-  int fseed_mpi(void);
-
-  //#ifdef SPRNG_MPI
-
-  int * finit_rng_simmpi(int *seed, int *mult, int * rng_type);
-  int fget_rn_int_simmpi(void);
-  float fget_rn_flt_simmpi(void);
-  double fget_rn_dbl_simmpi(void);
-
-  //#endif
-
-  double fcpu_t(void);
-}
-
+#ifdef __cplusplus
+extern "C" {
+#endif /* __cplusplus */
 
 double fcpu_t(void)
 {
@@ -87,7 +52,7 @@ double fcpu_t(void)
   return (current_time);
 }
 
-int fget_seed_rng(int **genptr)
+extern "C" int fget_seed_rng(int **genptr)
 {
   Sprng * ptr = (Sprng *) *genptr;
   
@@ -265,7 +230,7 @@ int fseed_mpi(void)
 #endif
 }
 
-//#ifdef SPRNG_MPI
+#ifdef SPRNG_MPI
 
 int * finit_rng_simmpi(int *seed, int *mult, int *rng_type)
 {
@@ -287,5 +252,9 @@ double fget_rn_dbl_simmpi(void)
   return get_rn_dbl_simple_mpi();
 }
 
-//#endif
+#endif
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 

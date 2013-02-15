@@ -1,6 +1,6 @@
 if USE_MPI
-  MPIDIR = $(shell @MPICXX@ --showme:compile)
-  MPILIB = $(shell @MPICXX@ --showme:link)
+  MPIDIR = `@MPICXX@ --showme:compile`
+  MPILIB = `@MPICXX@ --showme:link`
 endif
 
 
@@ -9,10 +9,10 @@ SUBDIRS = .
 EXTRA_DIST=lcg64.data .insertlib
 INCLUDEDIR = $(top_srcdir)/SRC
 
-LIBDIR=../../lib
+LIBDIR=../../SRC/.libs
 CHKDIR=../../check
 
-bin_PROGRAMS = check.clcg64 check.flcg64 check_sim.clcg64 check_sim.flcg64 time.clcg64 time.flcg64
+noinst_PROGRAMS = check.clcg64 check.flcg64 check_sim.clcg64 check_sim.flcg64 time.clcg64 time.flcg64
 check_clcg64_SOURCES = check_gen.cpp
 check_clcg64_DEPENDENCIES = $(LIBDIR)/libsprng.a
 check_clcg64_CXXFLAGS = -I$(INCLUDEDIR) $(MPIDIR)
@@ -44,8 +44,8 @@ time_flcg64_LDADD = -L$(LIBDIR) -lsprng -lstdc++
 time_flcg64_FFLAGS = $(FFPSIZE) -I$(INCLUDEDIR) $(MPIDIR)
 time_flcg64_LDFLAGS = $(MPILIB)
 
-bin_SCRIPTS = checklcg64 timelcg64
-CLEANFILES = $(bin_SCRIPTS)
+noinst_SCRIPTS = checklcg64 timelcg64
+CLEANFILES = $(noinst_SCRIPTS)
 
 checklcg64: $(CHKDIR)/insertlib
 	rm -f ./checklcg64

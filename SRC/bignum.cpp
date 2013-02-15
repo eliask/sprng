@@ -10,12 +10,15 @@
 /*************************************************************************/
 
 
-#include <iostream.h>
+#include <iostream>
+using namespace std;
+
+#include <cstring>
 #include <stdio.h>
 #include <stdlib.h>
 #include <limits.h>
 #include <time.h>
-#include <iomanip.h>
+#include <iomanip>
 #include <ctype.h>
 #include "bignum.h"
 

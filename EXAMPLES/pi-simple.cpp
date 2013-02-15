@@ -10,6 +10,7 @@
 #include <cstdio>
 #include <cmath>
 #include <cstring>
+#include <cstdlib>
 
 #define SIMPLE_SPRNG		/* simple interface                        */
 #include "sprng_cpp.h"

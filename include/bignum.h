@@ -1,4 +1,4 @@
-#include <iostream.h>
+#include <iostream>
 
 #ifndef BIGNUM_H
 #define BIGNUM_H

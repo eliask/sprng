@@ -1,1 +1,1 @@
-SUBDIRS = SRC lib check TESTS EXAMPLES include .
+SUBDIRS = SRC check TESTS EXAMPLES include .

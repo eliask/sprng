@@ -1,6 +1,6 @@
 SUBDIRS = . 
 
-LIBDIR=../../lib
+LIBDIR=../../SRC/.libs
 SRCDIR=../../SRC
 INCLUDEDIR=../../include
 INCLUDES = -I$(INCLUDEDIR)
@@ -10,9 +10,9 @@ CLEANFILES=*.$(GEN)
 
 CXX=@MPICXX@
 F77=@MPIF77@
-MPILIBS=$(shell @MPICXX@ --showme:compile --showme:link)
+MPILIBS=`@MPICXX@ --showme:compile --showme:link`
 
-bin_PROGRAMS = 2streams_mpi.tmp fsprng_mpi.tmp fsprng-simple_mpi.tmp message_mpi.tmp message-simple_mpi.tmp \
+noinst_PROGRAMS = 2streams_mpi.tmp fsprng_mpi.tmp fsprng-simple_mpi.tmp message_mpi.tmp message-simple_mpi.tmp \
 	pi-simple_mpi.tmp seed_mpi.tmp seed-simple_mpi.tmp sprng_mpi.tmp sprng-simple_mpi.tmp \
 	2streamsf_mpi.tmp fsprngf_mpi.tmp fsprngf-simple_mpi.tmp messagef_mpi.tmp messagef-simple_mpi.tmp \
 	seedf_mpi.tmp seedf-simple_mpi.tmp sprngf_mpi.tmp sprngf-simple_mpi.tmp
@@ -113,26 +113,26 @@ sprng_simple_mpi_tmp_CXXFLAGS = -I$(INCLUDEDIR)  -DSPRNG_MPI
 sprng_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm
 sprng_simple_mpi_tmp_LDFLAGS = $(MPILIBS)
 
-bin_SCRIPTS = sprng_mpi_test
-sprng_mpi_test:
-	@rm -f *.o
-	@mv sprng-simple_mpi.tmp sprng-simple_mpi.$(GEN)
-	@mv 2streams_mpi.tmp 2streams_mpi.$(GEN)
-	@mv 2streamsf_mpi.tmp 2streamsf_mpi.$(GEN)
-	@mv fsprngf_mpi.tmp fsprngf_mpi.$(GEN)
-	@mv fsprngf-simple_mpi.tmp fsprngf-simple_mpi.$(GEN)
-	@mv fsprng_mpi.tmp fsprng_mpi.$(GEN)
-	@mv fsprng-simple_mpi.tmp fsprng-simple_mpi.$(GEN)
-	@mv messagef_mpi.tmp messagef_mpi.$(GEN)
-	@mv message_mpi.tmp message_mpi.$(GEN)
-	@mv messagef-simple_mpi.tmp messagef-simple_mpi.$(GEN)
-	@mv message-simple_mpi.tmp message-simple_mpi.$(GEN)
-	@mv pi-simple_mpi.tmp pi-simple_mpi.$(GEN)
-	@mv seedf_mpi.tmp seedf_mpi.$(GEN)
-	@mv seedf-simple_mpi.tmp seedf-simple_mpi.$(GEN)
-	@mv seed_mpi.tmp seed_mpi.$(GEN)
-	@mv seed-simple_mpi.tmp seed-simple_mpi.$(GEN)
-	@mv sprngf_mpi.tmp sprngf_mpi.$(GEN)
-	@mv sprngf-simple_mpi.tmp sprngf-simple_mpi.$(GEN)
-	@mv sprng_mpi.tmp sprng_mpi.$(GEN)
+#bin_SCRIPTS = sprng_mpi_test
+#sprng_mpi_test:
+#	@rm -f *.o
+#	@mv sprng-simple_mpi.tmp sprng-simple_mpi.$(GEN)
+#	@mv 2streams_mpi.tmp 2streams_mpi.$(GEN)
+#	@mv 2streamsf_mpi.tmp 2streamsf_mpi.$(GEN)
+#	@mv fsprngf_mpi.tmp fsprngf_mpi.$(GEN)
+#	@mv fsprngf-simple_mpi.tmp fsprngf-simple_mpi.$(GEN)
+#	@mv fsprng_mpi.tmp fsprng_mpi.$(GEN)
+#	@mv fsprng-simple_mpi.tmp fsprng-simple_mpi.$(GEN)
+#	@mv messagef_mpi.tmp messagef_mpi.$(GEN)
+#	@mv message_mpi.tmp message_mpi.$(GEN)
+#	@mv messagef-simple_mpi.tmp messagef-simple_mpi.$(GEN)
+#	@mv message-simple_mpi.tmp message-simple_mpi.$(GEN)
+#	@mv pi-simple_mpi.tmp pi-simple_mpi.$(GEN)
+#	@mv seedf_mpi.tmp seedf_mpi.$(GEN)
+#	@mv seedf-simple_mpi.tmp seedf-simple_mpi.$(GEN)
+#	@mv seed_mpi.tmp seed_mpi.$(GEN)
+#	@mv seed-simple_mpi.tmp seed-simple_mpi.$(GEN)
+#	@mv sprngf_mpi.tmp sprngf_mpi.$(GEN)
+#	@mv sprngf-simple_mpi.tmp sprngf-simple_mpi.$(GEN)
+#	@mv sprng_mpi.tmp sprng_mpi.$(GEN)
 

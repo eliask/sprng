@@ -1,9 +1,9 @@
 SUBDIRS = lfg lcg lcg64 cmrg mlfg pmlcg .
 
-bin_SCRIPTS = checksprng timesprng 
-CLEANFILES = $(bin_SCRIPTS)
-dist_data_DATA = insertlib gencheck gentime .insertlib
-EXTRA_DIST = insertlib gencheck gentime .insertlib
+noinst_SCRIPTS = checksprng timesprng 
+CLEANFILES = $(noinst_SCRIPTS)
+#dist_data_DATA = insertlib gencheck gentime .insertlib
+#EXTRA_DIST = insertlib gencheck gentime .insertlib
 CHKDIR = $(top_srcdir)/check
 
 checksprng: gencheck

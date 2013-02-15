@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <cstdio>
+#include <cstdlib>
 
 #include "sprng_cpp.h"  /* SPRNG header file                               */
 

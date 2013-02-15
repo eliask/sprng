@@ -3,7 +3,7 @@
 #include <cstdlib>
 #include <ctime>
 #include "memory.h"
-#include "communicate.cpp"
+//#include "communicate.cpp"
 #include "sprng.h"
 #include "sprng_cpp.h"
 
@@ -133,7 +133,7 @@ int make_new_seed()
 
 /********************* SIMPLE_MPI ************************/
 
-//#ifdef SPRNG_MPI
+#ifdef SPRNG_MPI
 
 int * init_rng_simple_mpi(int seed,  int mult, int gtype /* = 0 */)
 {
@@ -184,7 +184,6 @@ double get_rn_dbl_simple_mpi()
   return defaultgen->get_rn_dbl();
 }
 
-//#endif
+#endif
 
-#include "fwrap.cpp"
 

@@ -1,7 +1,7 @@
 #ifndef BIGNUM_H
 #define BIGNUM_H
 
-#include <iostream.h>
+#include <iostream>
 
 class BigNum
 {

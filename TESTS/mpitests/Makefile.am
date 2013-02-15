@@ -1,6 +1,6 @@
 SUBDIRS = .
 
-LIBDIR=../../lib
+LIBDIR=../../SRC/.libs
 SRCDIR=../../SRC
 INCLUDEDIR=../../include
 EXTRA_DIST = fft.cpp
@@ -9,12 +9,12 @@ GEN=sprng
 CLEANFILES=*.$(GEN)
 
 CXX=@MPICXX@
-MPIDIR = $(shell @MPICXX@ --showme:compile)
-MPILIBS = $(shell @MPICXX@ --showme:link)
+MPIDIR = `@MPICXX@ --showme:compile`
+MPILIBS = `@MPICXX@ --showme:link`
 
 
 #if FFT
-#bin_PROGRAMS = equidist.tmp perm.tmp serial.tmp poker.tmp collisions.tmp gap.tmp maxt.tmp sum.tmp coupon.tmp runs.tmp random_walk.tmp wolff.tmp metropolis.tmp fft.tmp
+#noinst_PROGRAMS = equidist.tmp perm.tmp serial.tmp poker.tmp collisions.tmp gap.tmp maxt.tmp sum.tmp coupon.tmp runs.tmp random_walk.tmp wolff.tmp metropolis.tmp fft.tmp
 
 #equidist_tmp_SOURCES = equidist.cpp chisquare.cpp communicate.cpp init_tests.cpp util.h util.cpp tests.h $(SRCDIR)/sprng_cpp.h
 #equidist_tmp_CFLAGS = -I$(INCLUDEDIR)
@@ -90,7 +90,7 @@ MPILIBS = $(shell @MPICXX@ --showme:link)
 #	@mv metropolis.tmp metropolis.$(GEN)
 #	@mv fft.tmp fft.$(GEN)
 #else
-bin_PROGRAMS = equidist.tmp perm.tmp serial.tmp poker.tmp collisions.tmp gap.tmp maxt.tmp sum.tmp coupon.tmp runs.tmp random_walk.tmp wolff.tmp metropolis.tmp
+noinst_PROGRAMS = equidist.tmp perm.tmp serial.tmp poker.tmp collisions.tmp gap.tmp maxt.tmp sum.tmp coupon.tmp runs.tmp random_walk.tmp wolff.tmp metropolis.tmp
 
 equidist_tmp_SOURCES = equidist.cpp chisquare.cpp communicate.cpp init_tests.cpp util.h util.cpp tests.h $(SRCDIR)/sprng_cpp.h
 equidist_tmp_CXXFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI $(MPIDIR)
@@ -157,20 +157,20 @@ metropolis_tmp_CXXFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI $(MPIDIR)
 metropolis_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm 
 metropolis_tmp_LDFLAGS = $(MPILIBS)
 
-bin_SCRIPTS = sprngtest
-sprngtest:
-	@rm -f *.o
-	@mv equidist.tmp equidist.$(GEN)
-	@mv perm.tmp perm.$(GEN)
-	@mv serial.tmp serial.$(GEN)
-	@mv poker.tmp poker.$(GEN)
-	@mv collisions.tmp collisions.$(GEN)
-	@mv gap.tmp gap.$(GEN)
-	@mv maxt.tmp maxt.$(GEN)
-	@mv sum.tmp sum.$(GEN)
-	@mv coupon.tmp coupon.$(GEN)
-	@mv runs.tmp runs.$(GEN)
-	@mv random_walk.tmp random_walk.$(GEN)
-	@mv wolff.tmp wolff.$(GEN)
-	@mv metropolis.tmp metropolis.$(GEN)
+#bin_SCRIPTS = sprngtest
+#sprngtest:
+#	@rm -f *.o
+#	@mv equidist.tmp equidist.$(GEN)
+#	@mv perm.tmp perm.$(GEN)
+#	@mv serial.tmp serial.$(GEN)
+#	@mv poker.tmp poker.$(GEN)
+#	@mv collisions.tmp collisions.$(GEN)
+#	@mv gap.tmp gap.$(GEN)
+#	@mv maxt.tmp maxt.$(GEN)
+#	@mv sum.tmp sum.$(GEN)
+#	@mv coupon.tmp coupon.$(GEN)
+#	@mv runs.tmp runs.$(GEN)
+#	@mv random_walk.tmp random_walk.$(GEN)
+#	@mv wolff.tmp wolff.$(GEN)
+#	@mv metropolis.tmp metropolis.$(GEN)
 #endif

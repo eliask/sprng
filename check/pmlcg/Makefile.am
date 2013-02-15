@@ -1,6 +1,6 @@
 if USE_MPI
-  MPIDIR = $(shell @MPICXX@ --showme:compile)
-  MPILIB = $(shell @MPICXX@ --showme:link)
+  MPIDIR = `@MPICXX@ --showme:compile`
+  MPILIB = `@MPICXX@ --showme:link`
 endif
 
 SUBDIRS = .
@@ -8,10 +8,10 @@ SUBDIRS = .
 EXTRA_DIST=pmlcg.data .insertlib
 INCLUDEDIR = $(top_srcdir)/SRC
 
-LIBDIR=../../lib
+LIBDIR=../../SRC/.libs
 CHKDIR=../../check
 
-bin_PROGRAMS = check.cpmlcg check.fpmlcg check_sim.cpmlcg check_sim.fpmlcg time.cpmlcg time.fpmlcg
+noinst_PROGRAMS = check.cpmlcg check.fpmlcg check_sim.cpmlcg check_sim.fpmlcg time.cpmlcg time.fpmlcg
 check_cpmlcg_SOURCES = check_gen.cpp
 check_cpmlcg_DEPENDENCIES = $(LIBDIR)/libsprng.a
 check_cpmlcg_CXXFLAGS = -I$(INCLUDEDIR) $(MPIDIR)
@@ -43,8 +43,8 @@ time_fpmlcg_LDADD = -L$(LIBDIR) -lsprng -lstdc++
 time_fpmlcg_FFLAGS = $(FFPSIZE) -I$(INCLUDEDIR) $(MPIDIR)
 time_fpmlcg_LDFLAGS = $(MPILIB)
 
-bin_SCRIPTS = checkpmlcg timepmlcg
-CLEANFILES = $(bin_SCRIPTS)
+noinst_SCRIPTS = checkpmlcg timepmlcg
+CLEANFILES = $(noinst_SCRIPTS)
 
 checkpmlcg: $(CHKDIR)/insertlib
 	rm -f ./checkpmlcg
