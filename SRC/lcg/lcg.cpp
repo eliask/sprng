@@ -140,7 +140,7 @@ int *multiplier=NULL;
 
 int NGENS=0;
 
-void plus (int *a, int *b, int *c);
+void iplus (int *a, int *b, int *c);
 void mult (int *a, int *b, int *c, int size);
 void mult_48_32(int *a, int *b, int *c);
 void mult_48_64(int *a, int *b, int *c);
@@ -511,7 +511,7 @@ int LCG::spawn_rng(int nspawned, Sprng ***newgens)
 
 /*Compute a + b. a and b are positive 4 digit integers */
 /* in base 2^12, modulo 2^48 */
-void plus(int *a, int *b, int *result) 
+void iplus(int *a, int *b, int *result) 
 {
   int temp[5];
   int i;
@@ -720,7 +720,7 @@ void LCG::advance_seed()
   mult(temp,an,temp,4);
   mult(temp2,pmult,temp2,4);
 	
-  plus(temp,temp2,temp);
+  iplus(temp,temp2,temp);
 	
   seed[1] = (temp[1]<<12) + temp[0];
   seed[0] = (temp[3]<<12) + temp[2];
