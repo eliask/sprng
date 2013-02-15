@@ -16,6 +16,11 @@ AC_PROG_F77
 
 
 AC_F77_LIBRARY_LDFLAGS 
+AC_ARG_VAR([FLIBS],[Linker flags needed to link against Fortran code])dnl
+
+AC_ARG_VAR([MPICC],[C compiler to compile MPI program and to create parallel executable])
+AC_ARG_VAR([MPICXX],[C++ compiler to compile MPI program and to create parallel executable])
+AC_ARG_VAR([MPIF77],[Fortran compiler to compile MPI program and to create parallel executable])
 
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-lm':
