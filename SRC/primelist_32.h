@@ -2,7 +2,7 @@
 #define STEP 1000
 #define PRIMELISTSIZE2 1778
 
-int prime_list[PRIMELISTSIZE2] = 
+int prime_list_32[PRIMELISTSIZE2] = 
 {
 11863279,
 11863259,

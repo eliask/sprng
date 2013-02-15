@@ -2,7 +2,7 @@
 #define STEP 10000
 #define PRIMELISTSIZE2 15613
 
-unsigned int prime_list[PRIMELISTSIZE2] = 
+unsigned int prime_list_64[PRIMELISTSIZE2] = 
 {
 3037000493U,
 3037000453U,

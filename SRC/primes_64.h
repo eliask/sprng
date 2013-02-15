@@ -1,5 +1,5 @@
-#ifndef _primes_h_
-#define _primes_h_
+#ifndef _primes_64_h_
+#define _primes_64_h_
 
 #ifndef ANSI_ARGS
 #ifdef __STDC__
@@ -9,7 +9,7 @@
 #endif
 #endif
 
-int getprime ANSI_ARGS((int need, unsigned int *prime_array, int offset));
+int getprime_64 ANSI_ARGS((int need, unsigned int *prime_array, int offset));
  
 #define MAXPRIME 3037000501U  /* largest odd # < sqrt(2)*2^31+2 */
 #define MINPRIME 55108   /* sqrt(MAXPRIME) */

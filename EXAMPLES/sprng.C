@@ -3,6 +3,7 @@
 /* A random number stream is initialized and a few random double precision */
 /* numbers are printed.                                                    */
 /***************************************************************************/
+#include <stdio.h>
 #include <string.h>
 #include <iostream.h>
 
@@ -18,13 +19,18 @@ main()
   double rn;
   int irn;
   int i;
-
+  int gtype; /*---*/
+/*--- reading in a generator type */
+#include "gen_types_menu.h"
+  printf("Type in a generator type (integers: 0,1,2,3,4,5):  ");
+  scanf("%d", &gtype);       
+/*---*/  
   /****************** Initialization values *******************************/
             
   streamnum = 0;
   nstreams = 1;
 
-  stream = init_sprng(streamnum,nstreams,SEED,SPRNG_DEFAULT); /* initialize stream */
+  stream = init_sprng(gtype,streamnum,nstreams,SEED,SPRNG_DEFAULT); /* initialize stream */
   cout << " Print information about new stream:\n";
   print_sprng(stream);	
 

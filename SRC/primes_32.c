@@ -1,18 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "primes.h"
-#include "primelist.h"
+#include "primes_32.h"
+#include "primelist_32.h"
 
 #define YES 1
 #define NO  0
-#define NPRIMES 10000
+#define NPRIMES 1000
 
 int primes[NPRIMES];
 
 #ifdef __STDC__
-int init_prime(void)
+int init_prime_32(void)
 #else
-int init_prime()
+int init_prime_32()
 #endif
 {
   int i, j, obtained = 0, isprime;
@@ -44,15 +44,14 @@ int init_prime()
 
 
 #ifdef __STDC__
-int getprime(int need, unsigned int *prime_array, int offset)
+int getprime_32(int need, int *prime_array, int offset)
 #else
-int getprime(need, prime_array, offset)
-int need, offset;
-unsigned int *prime_array;
+int getprime_32(need, prime_array, offset)
+int need, *prime_array,offset;
 #endif
 {
   static int initiallized = NO, num_prime;
-  unsigned int largest;
+  int largest;
   int i, isprime, index, obtained = 0;
   
   if(need <= 0)
@@ -72,13 +71,13 @@ unsigned int *prime_array;
 
   if(offset+need-1<PRIMELISTSIZE1) 
   {
-    memcpy(prime_array,prime_list+offset,need*sizeof(unsigned int));
+    memcpy(prime_array,prime_list_32+offset,need*sizeof(int));
     return need;
   }
 
   if(!initiallized)
   {
-    num_prime = init_prime();
+    num_prime = init_prime_32();
 
     
     largest = MAXPRIME;
@@ -93,13 +92,13 @@ unsigned int *prime_array;
   
   if(offset < PRIMELISTSIZE1)	/* search table for previous prime */
   {
-    largest = prime_list[offset] + 2;
+    largest = prime_list_32[offset] + 2;
     offset = 0;
   }
   else
   {
-    index = (unsigned int) ((offset-PRIMELISTSIZE1+1)/STEP) + PRIMELISTSIZE1 -  1;
-    largest = prime_list[index] + 2;
+    index = (int) ((offset-PRIMELISTSIZE1+1)/STEP) + PRIMELISTSIZE1 -  1;
+    largest = prime_list_32[index] + 2;
     offset -= (index-PRIMELISTSIZE1+1)*STEP + PRIMELISTSIZE1 - 1;
   }
   
@@ -131,23 +130,23 @@ unsigned int *prime_array;
 #if 0
 main()
 {
-  unsigned int newprimes[1500], np, i;
+  int newprimes[1500], np, i;
   
-  np = getprime(2,newprimes,0);
-  np = getprime(2,newprimes+2,9);
-  np = getprime(2,newprimes+4,12);
+  np = getprime_32(2,newprimes,0);
+  np = getprime_32(2,newprimes+2,9);
+  np = getprime_32(2,newprimes+4,12);
   
    for(i=0; i<6; i++)
-    printf("%u. %u \n", i, newprimes[i]);
+    printf("%d. %d \n", i, newprimes[i]);
   
   /*while(np--)
-    printf("New primes: %u\n", newprimes[np]);
+    printf("New primes: %d\n", newprimes[np]);
 
-  np = getprime(5,newprimes);
+  np = getprime_32(5,newprimes);
   
   printf("%d new primes obtained ...\n", np);
   
   while(np--)
-    printf("New primes: %u\n", newprimes[np]);*/
+    printf("New primes: %d\n", newprimes[np]);*/
 }
 #endif
