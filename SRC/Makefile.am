@@ -22,14 +22,14 @@ libsprng_include_HEADERS =	$(INCLUDEDIR)/bignum.h \
 				$(INCLUDEDIR)/sprng_cpp.h \
 				$(INCLUDEDIR)/sprng_f.h \
 				$(INCLUDEDIR)/sprng.h \
-				$(INCLUDEDIR)/sprng_cwrap.h
+				$(INCLUDEDIR)/sprng_c.h
 
 #                     basic.cpp 
 #                     info.cpp 
 libsprng_la_SOURCES = sprng.cpp sprng.h memory.h \
                       sprng_cpp.cpp sprng_cpp.h sprng.h \
                       fwrap.cpp fwrap.h sprng_f.h \
-                      cwrap.cpp sprng_cwrap.h \
+                      cwrap.cpp sprng_c.h \
                       primes_64.h primes_64.cpp \
                       primes_32.h primes_32.cpp \
                       cputime.cpp cputime.h \

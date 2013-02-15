@@ -449,7 +449,7 @@ BigNum operator - (const BigNum & x, const BigNum & y)
   }
 
   if (z.size != 1) {
-    while (*zptr == 0) {
+    while (*zptr == 0 && z.size != 1) {
       *(zptr--);
       z.size--;
     }
@@ -580,7 +580,7 @@ BigNum Sub4Div (const BigNum & x, const BigNum & y)
   }
 
   if (z.size != 1) {
-    while (*zptr == 0) {
+    while (*zptr == 0 && z.size !=1) {
       *(zptr--);
       z.size--;
     }
