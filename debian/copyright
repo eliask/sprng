@@ -1,0 +1,58 @@
+This is the Debian GNU/Linux prepackaged version of the SPRNG
+(Scalable Parallel Random Number Generator) library.  SPRNG version
+1.0 was written by David Ceperley, Michael Mascagni, Lubos Mitas,
+Faisal Saied and Ashok Srinivasan at the University of Illinois at
+Urbana-Champaign. SPRNG 2.0 was written by Michael Mascagni and Chi-Ok
+Hwang.
+
+This package was created by Dirk Eddelbuettel <edd@debian.org>, with
+ample help by Kai Hendry <hendry@cs.helsinki.fi> and elijah wright
+<elw@stderr.org>. The original sources can be obtained at
+
+	http://sprng.cs.fsu.edu/main.html
+	http://sprng.cs.fsu.edu/SPRNGmain.html
+
+There is no direct copyright or license statement in the sources, but
+the main parallel random number generators in SRC/*/ carry statements
+like the following (from SRC/mlfg/mlfg.c):
+
+  /*************************************************************************/
+  /*           Parallel Multiplicative Lagged Fibonacci Generator          */
+  /*                                                                       */ 
+  /* Author: Ashok Srinivasan,                                             */
+  /*            NCSA, University of Illinois, Urbana-Champaign             */
+  /* E-Mail: ashoks@ncsa.uiuc.edu                                          */
+  /*                                                                       */ 
+  /* Disclaimer: NCSA expressly disclaims any and all warranties, expressed*/
+  /* or implied, concerning the enclosed software.  The intent in sharing  */
+  /* this software is to promote the productive interchange of ideas       */
+  /* throughout the research community. All software is furnished on an    */
+  /* "as is" basis. No further updates to this software should be          */
+  /* expected. Although this may occur, no commitment exists. The authors  */
+  /* certainly invite your comments as well as the reporting of any bugs.  */
+  /* NCSA cannot commit that any or all bugs will be fixed.                */
+  /*************************************************************************/
+
+Copyright (C) 1996 - 1999 David Ceperley, Michael Mascagni, Lubos Mitas, Faisal Saied and Ashok Srinivasan
+Copyright (C) 1999        Michael Mascagni and Chi-Ok Hwang
+
+Portions Copyright (C) 1999 Steven A. Cuccaro and Daniel V. Pryor
+
+Portions Copyright (C) 1996 United States Government as Represented by the Director, National Security Agency
+
+Portions Copyright (C) 1991 - 1996 Free Software Foundation
+
+License: LGPL-2 for GMP, see below for SPRNG
+
+  /* Disclaimer: NCSA expressly disclaims any and all warranties, expressed*/
+  /* or implied, concerning the enclosed software.  The intent in sharing  */
+  /* this software is to promote the productive interchange of ideas       */
+  /* throughout the research community. All software is furnished on an    */
+  /* "as is" basis. No further updates to this software should be          */
+  /* expected. Although this may occur, no commitment exists. The authors  */
+  /* certainly invite your comments as well as the reporting of any bugs.  */
+  /* NCSA cannot commit that any or all bugs will be fixed.                */
+
+
+On a Debian GNU/Linux system, the LGPL-2 license is included in the file
+/usr/share/common-licenses/LGPL-2.

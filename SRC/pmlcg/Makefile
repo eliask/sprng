@@ -23,7 +23,7 @@ include $(SRCDIR)/make.$(PLAT)
 all : pmlcg.o
 
 
-pmlcg.o : $(SRCDIR)/interface.h pmlcg.c  pmlcg.h $(SRCDIR)/memory.h  basic.h info.h gmp.h longlong.h $(SRCDIR)/store.h $(SRCDIR)/fwrap_.h
+pmlcg.o : $(SRCDIR)/interface.h pmlcg.c  pmlcg.h $(SRCDIR)/memory.h  basic.h info.h longlong.h $(SRCDIR)/store.h $(SRCDIR)/fwrap_.h
 	$(CC) -c $(CFLAGS)  $(FFXN) $(INLINEOPT) pmlcg.c -I$(SRCDIR)
 
 clean :

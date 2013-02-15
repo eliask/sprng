@@ -1,0 +1,143 @@
+#!/usr/bin/make -f
+#                                                       -*- makefile -*-
+# debian/rules file for the Debian/GNU Linux sprng package
+# Copyright (C) 2004-2007 by Dirk Eddelbuettel <edd@debian.org>
+
+source  := $(shell head -1 debian/changelog | awk '{print $$1}')
+sonum   := 2
+libpack := lib$(source)$(sonum)
+devpack := $(libpack)-dev
+#binpack := $(source)-bin
+#docpack := $(source)-doc-pdf
+debtmp	:= $(CURDIR)/debian/$(libpack)
+debdoc	:= $(CURDIR)/debian/$(docpack)
+arch 	:= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+
+DEB_HOST_ARCH := $(shell dpkg-architecture -qDEB_HOST_ARCH)
+ifneq (,$(filter armel armhf,$(DEB_HOST_ARCH)))
+export compilerflags = -O2 -D_REENTRANT -Wa,-mimplicit-it=thumb
+else
+export compilerflags = -O2 -D_REENTRANT
+endif
+
+#export DH_VERBOSE=1
+#export DH_COMPAT=3
+
+upstream: get-orig-source
+get-orig-source: 
+        #lynx ftp://sources.redhat.com/pub/gsl
+	lynx http://sprng.cs.fsu.edu/
+
+build: build-stamp
+build-stamp:
+	dh_testdir
+
+        # Add here commands to compile the package.
+        #$(MAKE)
+        ##  NB 'make src' makes just the library
+	$(MAKE) src
+
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp 
+
+	[ ! -f Makefile ] || $(MAKE) realclean
+
+        # An executable forgotten in the upstream sources
+	rm -rvf EXAMPLES/sprngD SRC/check_gen_simple SRC/check_gen_ptr
+
+	dh_clean
+
+install:
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	dh_installdirs usr/lib usr/include/sprng 
+
+        # Add here commands to install the package into debian/tmp.
+        #$(MAKE) prefix=`pwd`/debian/tmp/usr install
+        ##   NB 'make install' doesn't work as it doesn't honour $PREFIX
+	make -n install 
+        ##       so do it all by hand
+	cp -vax lib/libsprng.so.2.0  $(debtmp)/usr/lib/
+	(cd $(debtmp)/usr/lib && \
+		ln -s libsprng.so.$(sonum).0 libsprng.so.$(sonum) && \
+		ln -s libsprng.so.$(sonum).0 libsprng.so )
+	cp -vax lib/libsprng.a $(debtmp)/usr/lib
+	cp -vax include/* $(debtmp)/usr/include/sprng
+
+        #dh_install
+        # use older dh_movefiles instead	
+	dh_movefiles --sourcedir=debian/$(libpack)
+        # silence lintian
+	rmdir -v debian/$(libpack)/usr/include/sprng
+	rmdir -v debian/$(libpack)/usr/include
+
+# Build architecture-independent files here.
+binary-indep: #build install
+	dh_testdir -i
+	dh_testroot -i
+	dh_installchangelogs -i
+	dh_installdocs -i	DOCS/ TESTS/ EXAMPLES/
+#	dh_installexamples -i   
+#	dh_installmenu -i
+#	dh_installdebconf -i
+#	dh_installlogrotate -i
+#	dh_installemacsen -i
+#	dh_installcatalogs -i
+#	dh_installpam -i
+#	dh_installmime -i
+#	dh_installinit -i
+#	dh_installcron -i
+#	dh_installinfo -i
+#	dh_undocumented -i
+	dh_installman -i
+	dh_link -i
+	dh_compress -i
+	dh_fixperms -i
+#	dh_perl -i
+#	dh_python -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+	dh_installchangelogs -a
+	dh_installdocs -a	
+	dh_installexamples -a	
+	dh_installmenu -a
+#	dh_installdebconf -a
+#	dh_installlogrotate -a
+#	dh_installemacsen -a
+#	dh_installcatalogs -a
+#	dh_installpam -a
+#	dh_installmime -a
+#	dh_installinit -a
+#	dh_installcron -a
+#	dh_installinfo -a
+#	dh_undocumented -a
+	dh_installman -a
+	dh_strip -a
+	dh_link -a
+	dh_compress -a
+	dh_fixperms -a
+#	dh_perl -a
+#	dh_python -a
+	dh_makeshlibs -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+#binary: binary-indep binary-arch
+binary: binary-arch binary-indep 
+.PHONY: build clean binary-indep binary-arch binary install

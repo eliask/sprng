@@ -115,7 +115,7 @@ spawn : spawn.c $(LIBDIR)/lib$(SPRNGLIB).a
 invalid_ID : invalid_ID.c $(LIBDIR)/lib$(SPRNGLIB).a
 	$(CC) $(CFLAGS) -DCHECK_POINTERS -I$(INCDIR) -o invalid_ID invalid_ID.c -L$(LIBDIR) -l$(SPRNGLIB) $(GMPLIB)
 
-sprngf : sprngf.$(FSUFFIX) $(LIBDIR)/lib$(SPRNGLIB).a
+sprngf : sprngf.$(FSUFFIX) $(LIBDIR)/lib$(SPRNGLIB).so
 	$(F77) $(FFLAGS)  -I$(INCDIR) -o sprngf  sprngf.$(FSUFFIX) -L$(LIBDIR) -l$(SPRNGLIB) $(GMPLIB)
 
 sprngf_mpi : sprngf_mpi.$(FSUFFIX) $(LIBDIR)/lib$(SPRNGLIB).a

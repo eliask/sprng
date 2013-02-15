@@ -30,7 +30,7 @@
 #include "memory.h"
 #include "interface.h"
 #include "pmlcg.h"
-#include "gmp.h"
+#include <gmp.h>
 #include "basic.h"
 #include <math.h>
 
@@ -72,9 +72,9 @@
 
 
 #define NPARAMS 1		/*** number of valid parameters ***/
-int MAX_STREAMS = (1<<30); /* Maximum number of streams for initialization */
+int oldMAX_STREAMS = (1<<30); /* Maximum number of streams for initialization */
 				/* ... more streams can be spawned, though  */
-   
+#define MAX_STREAMS (1<<30)   
 
 struct rngen
 {

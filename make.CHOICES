@@ -30,14 +30,14 @@
 #PLAT = CONVEX
 #PLAT = DEC
 #PLAT = HP
-PLAT = INTEL
+#PLAT = INTEL
 #PLAT = O2K
 #PLAT  = SGI
 #PLAT = SP2		# IBM SP2
 #PLAT = SUN
 # For T3D, Use PLAT=T3E instead
 #PLAT =  T3E
-#PLAT  = GENERIC
+PLAT  = GENERIC
 
 ############################################################################
 

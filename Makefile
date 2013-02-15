@@ -26,6 +26,12 @@ include $(SRCDIR)/make.$(PLAT)
 
 all : src examples tests
 
+install:
+	install -d $(DESTDIR)/usr/lib
+	install -p $(SRCDIR)/../lib/libsprng.a $(DESTDIR)/usr/lib
+	install -d $(DESTDIR)/usr/include
+	install -p $(SRCDIR)/../include/* $(DESTDIR)/usr/include
+
 src :
 	(cd SRC; $(MAKE) ; cd ..)
 

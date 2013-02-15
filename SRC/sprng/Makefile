@@ -21,7 +21,7 @@ GENLIST = lfg lcg lcg64 cmrg mlfg pmlcg
 
 include $(SRCDIR)/make.$(PLAT)
 
-all : sprng timesprng checksprng
+all : sprng # timesprng checksprng
 
 
 #---------------------------------------------------------------------------
@@ -44,16 +44,23 @@ sprng :
 $(LIBDIR)/libsprng.a : sprng.o   \
 		$(SRCDIR)/lcg/lcg.o $(SRCDIR)/lfg/lfg.o \
 		$(SRCDIR)/lcg64/lcg64.o \
-		$(SRCDIR)/mlfg/mlfg.o $(SRCDIR)/cmrg/cmrg.o \
 		$(SRCDIR)/pmlcg/pmlcg.o \
+		$(SRCDIR)/mlfg/mlfg.o $(SRCDIR)/cmrg/cmrg.o \
 		$(SPRNG_COMMON_DEPEND)
 	$(AR) $(ARFLAGS) $(LIBDIR)/libsprng.a sprng.o \
 		$(SRCDIR)/lcg/lcg.o $(SRCDIR)/lfg/lfg.o \
 		$(SRCDIR)/lcg64/lcg64.o \
-		$(SRCDIR)/mlfg/mlfg.o $(SRCDIR)/cmrg/cmrg.o \
 		$(SRCDIR)/pmlcg/pmlcg.o \
+		$(SRCDIR)/mlfg/mlfg.o $(SRCDIR)/cmrg/cmrg.o \
 		$(SPRNG_COMMON_DEPEND)
 	$(RANLIB) $(LIBDIR)/libsprng.a
+	$(CC) -shared -Wl,-soname,libsprng.so.2 \
+		-o $(LIBDIR)/libsprng.so.2.0  sprng.o \
+		$(SRCDIR)/lcg/lcg.o $(SRCDIR)/lfg/lfg.o \
+		$(SRCDIR)/lcg64/lcg64.o \
+		$(SRCDIR)/pmlcg/pmlcg.o \
+		$(SRCDIR)/mlfg/mlfg.o $(SRCDIR)/cmrg/cmrg.o \
+		$(SPRNG_COMMON_DEPEND) $(GMPLIB)
 
 sprng.o : $(SRCDIR)/interface.h sprng.c   $(SRCDIR)/memory.h  \
 	$(SRCDIR)/multiply.h $(SRCDIR)/store.h $(SRCDIR)/fwrap_.h

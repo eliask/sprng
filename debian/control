@@ -1,0 +1,48 @@
+Source: sprng
+Section: math
+Priority: optional
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+XSBC-Original-Maintainer: Dirk Eddelbuettel <edd@debian.org>
+Standards-Version: 3.9.1
+Build-Depends: debhelper (>= 5.0.0), libgmp-dev
+
+Package: libsprng2
+Section: math
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: SPRNG Scalable Parallel RNG library -- library package
+ The SPRNG (Scalable Parallel Random Number Generator) library provides
+ several RNGs that are suitable for use in parallel computing.
+ .
+ URL: http://sprng.cs.fsu.edu
+ .
+ This package provides the shared libraries needed to execute programs
+ built with SPRNG.
+
+Package: libsprng2-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, libsprng2 (= ${binary:Version}), libgmp-dev
+Suggests: libsprng2-doc
+Description: SPRNG Scalable Parallel RNG library -- development package
+ The SPRNG (Scalable Parallel Random Number Generator) library provides
+ several RNGs that are suitable for use in parallel computing.
+ .
+ URL: http://sprng.cs.fsu.edu
+ .
+ This package contains the header files, static libraries and symbolic 
+ links that are need to compile programs using the SPRNG library.
+
+Package: libsprng2-doc
+Section: doc
+Architecture: all
+Depends: ${misc:Depends}, libsprng2 (>= ${source:Version})
+Description: SPRNG Scalable Parallel RNG library -- documentation package
+ The SPRNG (Scalable Parallel Random Number Generator) library provides
+ several RNGs that are suitable for use in parallel computing.
+ .
+ URL: http://sprng.cs.fsu.edu
+ .
+ This package contains files from the docs, examples and tests
+ directories included in the source distribution.
+

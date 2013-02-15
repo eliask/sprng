@@ -58,11 +58,10 @@ INCLUDEDIR = -I$(INCDIR)
 
 all : $(LIBDIR)/lib$(TESTLIB).a $(TESTLIST) 
 
-$(LIBDIR)/lib$(TESTLIB).a: init_tests.o util.o \
-                           chisquare.o stirling.o communicate.o 
-	$(AR) $(ARFLAGS) $(LIBDIR)/lib$(TESTLIB).a  \
-                init_tests.o util.o chisquare.o stirling.o communicate.o 
+$(LIBDIR)/lib$(TESTLIB).a: init_tests.o chisquare.o stirling.o communicate.o 
+	$(AR) $(ARFLAGS) $(LIBDIR)/lib$(TESTLIB).a  init_tests.o chisquare.o stirling.o communicate.o 
 	$(RANLIB) $(LIBDIR)/lib$(TESTLIB).a
+	$(LD) -r -o $(LIBDIR)/lib$(TESTLIB).so init_tests.o chisquare.o stirling.o communicate.o 
 
 init_tests.o : init_tests.c
 	$(CC) -c $(CFLAGS) $(INCLUDEDIR) $(DEF) init_tests.c

@@ -20,17 +20,14 @@ MPICC = mpicc
 # Also, if the previous compilation was without MPI, type: make realclean
 # before compiling for mpi.
 #
-# COMMENTED BY ME
-#MPIDIR = -L/usr/local/mpi/build/LINUX/ch_p4/lib
-#MPILIB = -lmpich
+MPIDIR = -L/usr/local/mpi/build/LINUX/ch_p4/lib
+MPILIB = -lmpich
 
 # Please include mpi header file path, if needed
 
-#CFLAGS = -O3 -DLittleEndian $(PMLCGDEF) $(MPIDEF) -D$(PLAT)  -I/usr/local/mpi/include -I/usr/local/mpi/build/LINUX/ch_p4/include
-CFLAGS = -O3 -DLittleEndian $(PMLCGDEF) $(MPIDEF) -D$(PLAT)  
+CFLAGS = -O3 -DLittleEndian $(PMLCGDEF) $(MPIDEF) -D$(PLAT)  -I/usr/local/mpi/include -I/usr/local/mpi/build/LINUX/ch_p4/include
 CLDFLAGS =  -O3 
-#FFLAGS = -O3 $(PMLCGDEF) $(MPIDEF) -D$(PLAT)  -I/usr/local/mpi/include -I/usr/local/mpi/build/LINUX/ch_p4/include -I.
-FFLAGS = -O3 $(PMLCGDEF) $(MPIDEF) -D$(PLAT)
+FFLAGS = -O3 $(PMLCGDEF) $(MPIDEF) -D$(PLAT)  -I/usr/local/mpi/include -I/usr/local/mpi/build/LINUX/ch_p4/include -I.
 F77LDFLAGS =  -O3 
 
 CPP = cpp -P
