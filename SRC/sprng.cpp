@@ -2,8 +2,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include "communicate.h"
 #include "memory.h"
-//#include "communicate.cpp"
 #include "sprng.h"
 #include "sprng_cpp.h"
 

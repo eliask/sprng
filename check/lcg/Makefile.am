@@ -20,7 +20,7 @@ check_clcg_LDFLAGS = $(MPILIB)
 check_flcg_SOURCES = check_genf.F 
 check_flcg_DEPENDENCIES = $(LIBDIR)/libsprng.a
 check_flcg_FFLAGS = $(FFPSIZE) -I$(INCLUDEDIR) $(MPIDIR)
-check_flcg_LDADD = -L$(LIBDIR) -lsprng -lstdc++ 
+check_flcg_LDADD = -L$(LIBDIR) -lsprng
 check_flcg_LDFLAGS = $(MPILIB)
 check_sim_clcg_SOURCES = check_gen_simple.cpp
 check_sim_clcg_DEPENDENCIES = $(LIBDIR)/libsprng.a
@@ -30,7 +30,7 @@ check_sim_clcg_LDFLAGS = $(MPILIB)
 check_sim_flcg_SOURCES = check_genf_simple.F 
 check_sim_flcg_DEPENDENCIES = $(LIBDIR)/libsprng.a
 check_sim_flcg_FFLAGS = $(FFPSIZE) -I$(INCLUDEDIR) $(MPIDIR)
-check_sim_flcg_LDADD = -L$(LIBDIR) -lsprng -lstdc++ 
+check_sim_flcg_LDADD = -L$(LIBDIR) -lsprng
 check_sim_flcg_LDFLAGS = $(MPILIB)
 time_clcg_SOURCES = timing.cpp
 time_clcg_DEPENDENCIES = $(LIBDIR)/libsprng.a
@@ -40,7 +40,7 @@ time_clcg_LDFLAGS = $(MPILIB)
 time_flcg_SOURCES = timingf.F
 time_flcg_DEPENDENCIES = $(LIBDIR)/libsprng.a
 time_flcg_FFLAGS = $(FFPSIZE) -I$(INCLUDEDIR) $(MPIDIR)
-time_flcg_LDADD = -L$(LIBDIR) -lsprng -lstdc++ 
+time_flcg_LDADD = -L$(LIBDIR) -lsprng
 time_flcg_LDFLAGS = $(MPILIB)
 
 

@@ -718,6 +718,7 @@ MLFG & MLFG::operator= (const MLFG & c)
     kval = c.kval;
     seed = c.seed;
   }
+  return * this;
 }
 
 /* Returns a double precision random number */

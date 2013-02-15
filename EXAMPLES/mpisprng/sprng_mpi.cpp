@@ -4,8 +4,8 @@
 /* random numbers.                                                         */
 /***************************************************************************/
 
-#include <iostream.h>
-#include <stdio.h>
+#include <iostream>
+#include <cstdio>
 #include <mpi.h>		/* MPI header file                         */
 
 #include "sprng_cpp.h"

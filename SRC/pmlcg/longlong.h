@@ -39,6 +39,9 @@
 #define __ll_lowpart(t) ((UWtype) (t) & (__ll_B - 1))
 #define __ll_highpart(t) ((UWtype) (t) >> (W_TYPE_SIZE / 2))
 
+#ifndef __GNUC__
+#define __attribute__(x) /* nothing */
+#endif
 typedef unsigned int UQItype __attribute__((mode(QI)));
 typedef unsigned int USItype __attribute__((mode(SI)));
 

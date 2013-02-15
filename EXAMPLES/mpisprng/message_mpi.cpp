@@ -5,9 +5,9 @@
 /* and prints a few random numbers from this stream.                       */ 
 /***************************************************************************/
 
-#include <iostream.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
 #include <mpi.h>		/* MPI header file                         */
 
 #include "sprng_cpp.h"          /* SPRNG header file                       */

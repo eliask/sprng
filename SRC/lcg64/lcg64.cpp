@@ -283,6 +283,7 @@ LCG64 & LCG64::operator= (const LCG64 &c)
     multiplier[2] = c.multiplier[2];
 #endif
   }
+  return * this;
 }
 
 void LCG64::advance_state()

@@ -298,6 +298,7 @@ CMRG & CMRG::operator= (const CMRG & c)
   s4 = c.s4;
 #endif
   }
+  return * this;
 }
 
 void CMRG::advance_state() {

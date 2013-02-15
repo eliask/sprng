@@ -4,8 +4,8 @@
 /* is run. The same seed is produced on each process.                      */
 /***************************************************************************/
 
-#include <iostream.h>
-#include <stdio.h>
+#include <iostream>
+#include <cstdio>
 #include <mpi.h>                /* MPI header file                         */
 
 #define USE_MPI                 /* SPRNG makes MPI calls                   */

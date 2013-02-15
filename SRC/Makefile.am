@@ -9,7 +9,7 @@ LIBDIR = .libs
 
 lib_LTLIBRARIES = libsprng.la
 
-libsprng_la_LDFLAGS = -version-info 4:0
+libsprng_la_VERSION = -version-info 4:0
 
 libsprng_includedir = ${includedir}
 libsprng_include_HEADERS =	$(INCLUDEDIR)/bignum.h \
@@ -34,7 +34,8 @@ libsprng_la_SOURCES = sprng.cpp sprng.h memory.h \
                       primes_32.h primes_32.cpp \
                       cputime.cpp cputime.h \
                       memory.cpp \
-                      communicate.cpp memory.h \
+                      communicate.cpp communicate.h \
+		      memory.h \
                       store.cpp store.h \
 		      basic.h info.h bigrat.h bignum.h \
                       bigrat.cpp bigrat.h bignum.h \
@@ -48,4 +49,5 @@ libsprng_la_SOURCES = sprng.cpp sprng.h memory.h \
 
 libsprng_la_CXXFLAGS = $(FFXN)  $(MPI_DEF) $(sprng_cxxflags) `@MPICXX@ --showme:compile`
 libsprng_la_FFLAGS = $(FFXN) $(sprng_fflags) $(MPI_DEF) `@MPICXX@ --showme:compile`
+libsprng_la_LDFLAGS = $(libsprng_la_VERSION) $(FFXN) $(sprng_fflags) $(MPI_DEF) `@MPICXX@ --showme:link`
 

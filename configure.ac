@@ -34,7 +34,11 @@ AC_CHECK_HEADERS([limits.h stddef.h stdlib.h string.h sys/time.h])
 
 AC_CHECK_SIZEOF([long int])
 
-CXXFLAGS="$CXXFLAGS -Wno-deprecated -Wno-write-strings"
+AC_CHECK_LIB(stdc++, main)
+
+if test "x$GCC" = xyes; then
+  CXXFLAGS="$CXXFLAGS -Wno-deprecated -Wno-write-strings"
+fi
 
 if test "$ac_cv_sizeof_long_int" = "8"; then
   CXXFLAGS="$CXXFLAGS -DLONG64=long"

@@ -1,5 +1,5 @@
 if USE_MPI
-  SUBDIRS = . mpitests
+  SUBDIRS = mpitests
 else
   SUBDIRS = .
 endif

@@ -25,17 +25,17 @@ noinst_PROGRAMS = 2streams_mpi.tmp fsprng_mpi.tmp fsprng-simple_mpi.tmp message_
 
 2streamsf_mpi_tmp_SOURCES = 2streamsf_mpi.F $(SRCDIR)/sprng_f.h
 2streamsf_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-2streamsf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+2streamsf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 2streamsf_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 fsprngf_mpi_tmp_SOURCES = fsprngf_mpi.F $(SRCDIR)/sprng_f.h
 fsprngf_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-fsprngf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+fsprngf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 fsprngf_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 fsprngf_simple_mpi_tmp_SOURCES = fsprngf-simple_mpi.F $(SRCDIR)/sprng_f.h
 fsprngf_simple_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-fsprngf_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+fsprngf_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 fsprngf_simple_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 fsprng_mpi_tmp_SOURCES = fsprng_mpi.cpp $(SRCDIR)/sprng_cpp.h
@@ -50,12 +50,12 @@ fsprng_simple_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 messagef_mpi_tmp_SOURCES = messagef_mpi.F $(SRCDIR)/sprng_f.h
 messagef_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-messagef_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+messagef_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 messagef_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 messagef_simple_mpi_tmp_SOURCES = messagef-simple_mpi.F $(SRCDIR)/sprng_f.h
 messagef_simple_mpi_tmp_FFLAGS = -I$(INCLUDEDIR)  -DSPRNG_MPI
-messagef_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+messagef_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 messagef_simple_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 message_mpi_tmp_SOURCES = message_mpi.cpp $(SRCDIR)/sprng_cpp.h
@@ -75,12 +75,12 @@ pi_simple_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 seedf_mpi_tmp_SOURCES = seedf_mpi.F $(SRCDIR)/sprng_f.h
 seedf_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-seedf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+seedf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 seedf_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 seedf_simple_mpi_tmp_SOURCES = seedf-simple_mpi.F $(SRCDIR)/sprng_f.h
 seedf_simple_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-seedf_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+seedf_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 seedf_simple_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 seed_mpi_tmp_SOURCES = seed_mpi.cpp $(SRCDIR)/sprng_cpp.h
@@ -95,12 +95,12 @@ seed_simple_mpi_tmp_LDFALGS = $(MPILIBS)
 
 sprngf_mpi_tmp_SOURCES = sprngf_mpi.F $(SRCDIR)/sprng_f.h
 sprngf_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-sprngf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+sprngf_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 sprngf_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 sprngf_simple_mpi_tmp_SOURCES = sprngf-simple_mpi.F $(SRCDIR)/sprng_f.h
 sprngf_simple_mpi_tmp_FFLAGS = -I$(INCLUDEDIR) -DSPRNG_MPI
-sprngf_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN) -lm -lstdc++
+sprngf_simple_mpi_tmp_LDADD = -L$(LIBDIR) -l$(GEN)
 sprngf_simple_mpi_tmp_LDFLAGS = $(MPILIBS)
 
 sprng_mpi_tmp_SOURCES = sprng_mpi.cpp $(SRCDIR)/sprng_cpp.h
