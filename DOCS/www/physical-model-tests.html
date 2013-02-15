@@ -1,0 +1,127 @@
+<HTML>
+<HEAD>
+<TITLE> SPRNG: Scalable Parallel Pseudo-Random Number Generator Library  </TITLE> 
+</HEAD> 
+<BODY BGCOLOR="#FFFFFF">
+<H1><A HREF="users-guide.html">User's Guide:</A>
+<A HREF="tests.html">Testing:</A>Physical Model Tests</H1>
+<P>
+<HR>
+<P>
+<BLOCKQUOTE>
+
+<H1 ALIGN=CENTER> Physical Model Tests  </H1>
+<P>
+It is best to test random number generator in an application
+similar to where it will be used. We have subjected our generators to
+ISING model tests and random walk tests. The exact solution for these
+tests are known, and the tests also have the structure of practical
+applications. Thus they are good measures of the quality of the
+generators. We hope that our results will give the computational
+scientist a measure of the expected biases in the simulation. We
+explain these test results in this section.
+
+<P>
+<DL>
+<A NAME="ising"></A>
+<DT><H2>Ising Model Tests</H2>
+<P> 
+<DD>The <A HREF="http://www.npac.syr.edu/users/paulc/lectures/montecarlo/node8.html#SECTION00020000000000000000">Ising model</A> is a model proposed in
+statistical mechanics that is simple enough that the exact solution is
+known, but still realistic enough that it has practical
+applications. In this model, a lattice of spin states is
+maintained. For each configuration of spin states, it is possible to
+calculate certain macroscopic properties. Different configurations are
+generated, and the statistical average of the macroscopic quantity over
+all the configurations generated is considered the observed value of
+that quantity. Two popular <A
+HREF="http://www.npac.syr.edu/users/paulc/lectures/montecarlo/node17.html#SECTION00030000000000000000">Monte
+Carlo</A>
+algorithms for generating the configurations are (i) the <A
+HREF="http://www.npac.syr.edu/users/paulc/lectures/montecarlo/node24.html#SECTION00037000000000000000">Metropolis
+Algorithm</A> and (ii) the <A
+HREF="http://www.npac.syr.edu/users/paulc/lectures/montecarlo/node58.html#SECTION00066000000000000000">Wolff
+Algorithm</A>. 
+
+<H3>Sequential tests</H3> 
+We present results for these two algorithms
+with each of our generators for the Specific Heat and the Energy, were
+we generated around 10<SUP>11</SUP> random numbers in our simulations
+on a 16x16 lattice.
+
+
+<P>
+<A HREF="images/specific-heat.ps">Specific Heat</A><BR> 
+<A HREF="images/energy.ps">Energy</A> 
+
+<P>
+<H3>Parallel tests</H3> We simulated parallelism with the Metropolis
+algorithm by maintaining a different random number stream at each of
+the 256 lattice sites. This tests for correlations between
+streams. The results for the Specific Heat and Energy are given below,
+with a total of round 10<SUP>11</SUP> random numbers generated.
+
+<P>
+<A HREF="images/msCv.ps">Specific Heat</A><BR> 
+<A HREF="images/msE.ps">Energy</A> 
+
+<P>
+We need to be careful in choosing the seeds. Otherwise correlations
+between the streams can cause poor results as in the examples shown
+below. SPRNG users need not bother about this issue, since we
+automatically handle it in our code.
+<P>
+<A HREF="images/msbadCv.ps">Specific Heat</A><BR> 
+<A HREF="images/msbadE.ps">Energy</A> 
+
+ 
+<A NAME="random-walk"></A>
+<DT><H2>Random Walk Tests</H2>
+<P> 
+<DD>In the Random Walk test, we start a "Random Walker" from a certain
+position
+on a two dimensional lattice. The random walker then takes a certain number of steps
+to other lattice points. The direction of each step is determined from
+the value returned by a random number generated. A series of such
+tests are performed, and for each such test, the final position of the
+random walker is noted. This distribution of positions is compared
+with the expected distribution with a random number stream from a 
+uniform distribution. A Chisquare value is computed as a
+quantitative measure of the likelihood of the distribution being
+uniform. 
+
+<P>
+This test can check for correlations between streams if we <A
+HREF="test-suite.html#parseq-tests">interleave</A> streams to form a
+new stream and run this test. We compared the probability of the
+random walker being in each of the four quadrants, as in the tests
+implemented by <A HREF="refs.html#vattulainen">Vattulainen, et
+al</A>. Acceptable values were obtained for our generators with
+10<SUP>8</SUP> random numbers generated, both in the sequential and
+parallel tests.
+</DL>
+
+
+<P>
+</BLOCKQUOTE>
+<HR>
+<CENTER>
+<TABLE WIDTH=400 ALIGN=CENTER COL=4 CELLSPACING =0 BORDER=0 >
+<TR><TD><A HREF="quick-start.html"><IMG SRC="qs.gif" BORDER=0 ALT="[Quick
+Start]"></A></TD>
+<TD><A HREF="users-guide.html"><IMG SRC="us.gif" BORDER=0 ALT="[User's
+Guide]"></A></TD>
+<TD><A HREF="reference.html"><IMG SRC="ref.gif" BORDER=0 ALT="[Reference
+Manual]"></A></TD>
+<TD><A HREF="quick-reference.html"><IMG SRC="qr.gif" BORDER=0 ALT="[Quick
+Reference]"></A></TD>
+</TR></TABLE>
+</CENTER>
+<HR>
+
+</BODY>
+<ADDRESS> Ashok Srinivasan <BR>
+<A HREF="mailto:ashoks@ncsa.uiuc.edu"> ashoks@ncsa.uiuc.edu </A> <BR>
+Last modified 25 Jul, 1997
+</ADDRESS>
+</HTML> 
