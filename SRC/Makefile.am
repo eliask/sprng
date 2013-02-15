@@ -29,7 +29,7 @@ libsprng_include_HEADERS =	$(INCLUDEDIR)/bignum.h \
 libsprng_la_SOURCES = sprng.cpp sprng.h memory.h \
                       sprng_cpp.cpp sprng_cpp.h sprng.h \
                       fwrap.cpp fwrap.h sprng_f.h \
-                      cwrap.cpp sprng_c.h \
+                      cwrap.cpp cwrap.h sprng_c.h \
                       primes_64.h primes_64.cpp \
                       primes_32.h primes_32.cpp \
                       cputime.cpp cputime.h \
@@ -49,5 +49,5 @@ libsprng_la_SOURCES = sprng.cpp sprng.h memory.h \
 
 libsprng_la_CXXFLAGS = $(FFXN)  $(MPI_DEF) $(sprng_cxxflags) `@MPICXX@ --showme:compile`
 libsprng_la_FFLAGS = $(FFXN) $(sprng_fflags) $(MPI_DEF) `@MPICXX@ --showme:compile`
-libsprng_la_LDFLAGS = $(libsprng_la_VERSION) $(FFXN) $(sprng_fflags) $(MPI_DEF) `@MPICXX@ --showme:link`
+libsprng_la_LDFLAGS = $(libsprng_la_VERSION) $(FFXN) $(sprng_fflags) $(MPI_DEF) `@MPICXX@ --showme:link` $(LDFLAGS)
 

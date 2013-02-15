@@ -5,8 +5,7 @@ AC_INIT(SRC/lfg/lfg.cpp)
 AC_CANONICAL_SYSTEM
 
 AM_INIT_AUTOMAKE(sprng,4)
-AM_CONFIG_HEADER(config.h:config.in)
-AM_CONFIG_HEADER(SRC/fwrap.h:SRC/fwrap.h.in)
+AM_CONFIG_HEADER(SRC/config.h:SRC/config.h.in)
 
 # Checks for programs.
 AC_PROG_CXX
@@ -27,6 +26,8 @@ AC_ARG_VAR([MPIF77],[Fortran compiler to compile MPI program and to create paral
 AC_CHECK_LIB([m], [main])
 
 AC_DISABLE_STATIC
+AC_LIBTOOL_DLOPEN
+AC_LIBTOOL_WIN32_DLL
 AC_PROG_LIBTOOL
 AC_SUBST(LIBTOOL_DEPS)
 #AC_PROG_RANLIB
@@ -37,11 +38,17 @@ AC_SUBST(sprng_fflags)
 
 # Checks for header files.
 AC_HEADER_STDC
-AC_CHECK_HEADERS([limits.h stddef.h stdlib.h string.h sys/time.h])
+AC_CHECK_HEADERS([limits.h stddef.h stdlib.h string.h sys/time.h sys/resource.h])
 
 AC_CHECK_SIZEOF([long int])
 
 AC_CHECK_LIB(stdc++, main)
+
+case $host_os in
+mingw*|cygwin*)
+    LDFLAGS+="-no-undefined -Wl,--enable-auto-import"
+    ;;
+esac
 
 if test "x$GCC" = xyes; then
   CXXFLAGS="$CXXFLAGS -Wno-deprecated -Wno-write-strings"
