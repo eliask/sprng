@@ -20,6 +20,11 @@ public class TestWizard
    protected MenuItem  gapMI;
    protected MenuItem  permMI;
    protected MenuItem  runsMI;
+   protected MenuItem  collisionsMI;
+   protected MenuItem  couponMI;
+   protected MenuItem  maxtMI;
+   protected MenuItem  pokerMI;
+   protected MenuItem  sumMI;
    // Menu items under "Generator" menu.
    protected MenuItem  lcgMI;
    protected MenuItem  lfgMI;
@@ -156,6 +161,57 @@ public class TestWizard
          return true;
       }
 
+
+      // Display the "Collisions Test" panel for that menu choice.
+      if (eve.target == collisionsMI) {
+         // Create and add a new "Collisions Test" panel only if none is displayed.
+         if (!(testParmPanel instanceof CollisionsPanel)) {
+            testParmPanel = new CollisionsPanel(this);
+            adjustPanel();
+         }
+         return true;
+      }
+
+      // Display the "Coupon Test" panel for that menu choice.
+      if (eve.target == couponMI) {
+         // Create and add a new "Coupon Test" panel only if none is displayed.
+         if (!(testParmPanel instanceof CouponPanel)) {
+            testParmPanel = new CouponPanel(this);
+            adjustPanel();
+         }
+         return true;
+      }
+
+      // Display the "Maxt Test" panel for that menu choice.
+      if (eve.target == maxtMI) {
+         // Create and add a new "Maxt Test" panel only if none is displayed.
+         if (!(testParmPanel instanceof MaxtPanel)) {
+            testParmPanel = new MaxtPanel(this);
+            adjustPanel();
+         }
+         return true;
+      }
+
+      // Display the "Poker Test" panel for that menu choice.
+      if (eve.target == pokerMI) {
+         // Create and add a new "Poker Test" panel only if none is displayed.
+         if (!(testParmPanel instanceof PokerPanel)) {
+            testParmPanel = new PokerPanel(this);
+            adjustPanel();
+         }
+         return true;
+      }
+
+      // Display the "Sum Test" panel for that menu choice.
+      if (eve.target == sumMI) {
+         // Create and add a new "Sum Test" panel only if none is displayed.
+         if (!(testParmPanel instanceof SumPanel)) {
+            testParmPanel = new SumPanel(this);
+            adjustPanel();
+         }
+         return true;
+      }
+
       // Display the "LCG" panel for that menu choice.
       if (eve.target == lcgMI) {
          // Create and add a new "LCG" panel only if none is displayed.
@@ -253,11 +309,21 @@ public class TestWizard
       gapMI = new MenuItem("Gap");
       permMI = new MenuItem("Permutation");
       runsMI = new MenuItem("Runs");
+      collisionsMI = new MenuItem("Collisions");
+      couponMI = new MenuItem("Coupon");
+      maxtMI = new MenuItem("Maxt");
+      pokerMI = new MenuItem("Poker");
+      sumMI = new MenuItem("Sum");
       testMenu.add(eqdistrMI);
       testMenu.add(serialMI);
       testMenu.add(gapMI);
       testMenu.add(permMI);
       testMenu.add(runsMI);
+      testMenu.add(collisionsMI);
+      testMenu.add(couponMI);
+      testMenu.add(maxtMI);
+      testMenu.add(pokerMI);
+      testMenu.add(sumMI);
 
       // Create and add items under menu "Generator".
       lcgMI = new MenuItem("48 bit Linear Congruential");
